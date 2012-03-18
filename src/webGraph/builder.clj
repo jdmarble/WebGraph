@@ -77,13 +77,6 @@
 ;; Public Neo4j interface
 ;; ======================
 
-(defn init-database []
-  "Create database indicies that require configuration."
-  (db-req :post (db-service "index/node/")
-          {:name "fulltext"
-           :config {:type "fulltext"
-                    :provider "lucene"}}))
-
 (defn add-seed! [url]
   "Specify that the given url was used to seed the web crawler.
    A 'seed' edge from the root node to that page will be created."
