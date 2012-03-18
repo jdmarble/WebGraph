@@ -7,6 +7,9 @@
               :extends edu.uci.ics.crawler4j.crawler.WebCrawler
               :prefix crawler-))
 
+(def base-url
+  (atom nil))
+
 (def binary-extension
   #".*(\.(css|js|bmp|gif|jpe?g|png|tiff?
    |mid|mp2|mp3|mp4|wav|avi|mov|mpeg|ram
@@ -16,7 +19,7 @@
 (defn crawler-shouldVisit [this ^WebURL url]
   (let [href (-> url .getURL .toLowerCase)]
     (and     
-     (.startsWith href "http://www.cse.unr.edu")
+     (.startsWith href @base-url)
      (not (re-matches binary-extension href)))))
 
 (defn crawler-visit [this ^Page page]
