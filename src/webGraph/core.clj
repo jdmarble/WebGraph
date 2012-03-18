@@ -1,7 +1,8 @@
 (ns webGraph.core  
-  (:use [webGraph.crawl :only [crawl]])
-  (:require [borneo.core :as neo]))
+  (:use [webGraph.crawl :only [crawl]]
+        [webGraph.builder :only [init-database]]))
 
 (defn -main [& args]
-  (neo/with-db! "page-graph"
-    (crawl ["http://www.cse.unr.edu/"] -1 -1 1000 6)))
+  (org.apache.log4j.PropertyConfigurator/configure "logging.properties")
+  (init-database)
+  (crawl ["http://www.cse.unr.edu/"] 10 100 100 6))
