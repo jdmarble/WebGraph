@@ -20,7 +20,7 @@
         robots-txt-config (RobotstxtConfig.)
         robots-txt-server (RobotstxtServer. robots-txt-config fetcher)
         controller (CrawlController. config fetcher robots-txt-server)]
-    (compare-and-set! base-url nil seed)
+    (swap! base-url (constantly seed))
     (add-seed! seed)
     (.addSeed controller seed)
     (.start controller Crawler crawler-count)))

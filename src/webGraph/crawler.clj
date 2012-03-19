@@ -7,8 +7,7 @@
               :extends edu.uci.ics.crawler4j.crawler.WebCrawler
               :prefix crawler-))
 
-(def base-url
-  (atom nil))
+(def base-url (atom nil))
 
 (def binary-extension
   #".*(\.(css|js|bmp|gif|jpe?g|png|tiff?
